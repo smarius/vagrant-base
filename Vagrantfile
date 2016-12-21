@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "debian/jessie64"
+  config.vm.box = "centos/7"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -38,7 +38,11 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-
+  # config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: ".git/" # One way, host to vm.
+  # Use "vagrant plugin install vagrant-vbguest" if it errors out(can't mount) duuring vagrant up.
+  # config.vm.synced_folder ".", "/vagrant", type: "virtualbox" # Two way.
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
